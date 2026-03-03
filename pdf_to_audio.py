@@ -1,0 +1,17 @@
+#! usr/bin/env python3
+
+#imports
+import pyttsx3
+import PyPDF2
+from tkinter.filedialog import *
+
+book = askopenfile()
+pdfreader = PyPDF2.PdfFileReader(book)
+pages = pdfreader.numPages
+
+for num in range(0, pages+1):
+    page = pdfreader.getPage(num)
+    text = page.extractText()
+    player = pyttsx3.init()
+    player.say(text)
+    player.runAndWait()
